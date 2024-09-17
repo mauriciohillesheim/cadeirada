@@ -5,11 +5,72 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     text-align: center;
+}
+
+/* Estilos do cabeçalho */
+.site-header {
+    background-color: #000;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Título animado estilo Mortal Kombat */
+.mk-title {
+    margin: 0;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #ffcb05; /* Cor dourada */
+    animation: glow 1.5s infinite alternate, shake 0.5s infinite;
+    text-shadow: 2px 2px 5px #000, 0 0 10px #ffcb05, 0 0 20px #ffcb05;
+}
+
+.mk-subtitle {
+    margin: 5px 0 0;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #d9534f;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Animação de brilho */
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 5px #000, 0 0 10px #ffcb05, 0 0 20px #ffcb05, 0 0 30px #ffcb05;
+    }
+    to {
+        text-shadow: 2px 2px 5px #000, 0 0 20px #ffcb05, 0 0 30px #ffcb05, 0 0 40px #ffcb05;
+    }
+}
+
+/* Animação de "shake" (tremor leve) */
+@keyframes shake {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(2px, -2px);
+    }
+    50% {
+        transform: translate(-2px, 2px);
+    }
+    75% {
+        transform: translate(2px, 2px);
+    }
+}
+
+/* Animação de fade-in no subtítulo */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .container {
@@ -18,44 +79,38 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 90%;
-    margin: 20px;
+    margin: 20px auto;
 }
 
-h1 {
+h3 {
     font-size: 2rem;
     color: #d9534f;
     margin-bottom: 15px;
 }
 
+/* Layout para imagem e vídeo lado a lado */
+.media-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
 .action-image {
-    max-width: 50%; /* Reduz o tamanho da imagem em 50% */
+    max-width: 48%; /* O vídeo e a imagem ocuparão 48% cada */
     height: auto;
     border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.youtube-link {
-    display: inline-block;
-    background-color: #d9534f;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.youtube-link:hover {
-    background-color: #c9302c;
 }
 
 /* Mini player responsivo */
 .video-container {
+    flex-grow: 1;
+    max-width: 48%;
     position: relative;
     padding-bottom: 56.25%; /* Proporção de 16:9 */
     height: 0;
     overflow: hidden;
-    max-width: 100%;
-    margin-top: 20px;
 }
 
 .video-container iframe {
@@ -68,21 +123,33 @@ h1 {
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-    h1 {
+    .mk-title {
+        font-size: 2.5rem;
+    }
+
+    .mk-subtitle {
+        font-size: 1.5rem;
+    }
+
+    h3 {
         font-size: 1.8rem;
     }
 
-    .youtube-link {
-        padding: 8px 16px;
-    }
-
-    .action-image {
-        max-width: 70%;
+    .action-image, .video-container {
+        max-width: 100%; /* Em telas menores, ambos ocupam 100% da largura */
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
+    .mk-title {
+        font-size: 2rem;
+    }
+
+    .mk-subtitle {
+        font-size: 1.2rem;
+    }
+
+    h3 {
         font-size: 1.5rem;
     }
 
@@ -90,11 +157,7 @@ h1 {
         padding: 15px;
     }
 
-    .youtube-link {
-        padding: 6px 12px;
-    }
-
-    .action-image {
-        max-width: 90%;
+    .action-image, .video-container {
+        max-width: 100%;
     }
 }
